@@ -1,4 +1,4 @@
-console.log(getComputerChoice());
+console.log(getHumanChoice());
 
 /*
 Randomly returns either "rock", "paper", or "scissors"
@@ -22,4 +22,13 @@ function getComputerChoice()
     {
         return "scissors";
     }
+}
+
+
+
+function getHumanChoice()
+{
+    let userChoice = prompt("rock, paper, or scissors: ");
+
+    return userChoice;
 }
