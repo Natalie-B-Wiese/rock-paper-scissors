@@ -1,4 +1,6 @@
-console.log(getHumanChoice());
+let humanScore=0;
+let computerScore=0;
+
 
 /*
 Randomly returns either "rock", "paper", or "scissors"
@@ -24,11 +26,45 @@ function getComputerChoice()
     }
 }
 
-
-
+/*
+Asks user to choose between rock, paper, and scissors. Then returns the user's input
+*/
 function getHumanChoice()
 {
     let userChoice = prompt("rock, paper, or scissors: ");
 
     return userChoice;
 }
+
+
+
+/*
+Displays who won the round and increments the correct score variable
+*/
+function playRound(humanChoice, computerChoice)
+{
+    const humanChoiceLower=humanChoice.toLowerCase();
+    if (humanChoiceLower===computerChoice)
+    {
+        console.log("It was a tie! You each chose "+computerChoice);
+    }
+    //if human won
+    else if ((humanChoiceLower==="rock" && computerChoice==="scissors") ||
+    (humanChoiceLower==="paper" && computerChoice==="rock") ||
+    (humanChoiceLower==="scissors" && computerChoice==="paper"))
+    {
+        console.log("You win! "+humanChoiceLower+" beats "+computerChoice);
+        humanScore+=1;
+    }
+    else
+    {
+        console.log("You lose! "+computerChoice+" beats "+humanChoiceLower);
+        computerScore+=1;
+    }
+
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
