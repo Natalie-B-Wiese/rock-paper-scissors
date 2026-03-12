@@ -42,18 +42,31 @@ function getHumanChoice()
 
 function playGame()
 {
+    const POINTS_TO_WIN=5;
     let humanScore=0;
     let computerScore=0;
 
     updateScoreTextContent();
     
     //makes the text display the values of human score and computer score variables
+    //called whenever score changes
     function updateScoreTextContent()
     {
         const humanScoreText=document.querySelector("#humanScore");
         const computerScoreText=document.querySelector("#computerScore");
         humanScoreText.textContent=humanScore;
         computerScoreText.textContent=computerScore;
+
+        if (humanScore==POINTS_TO_WIN || computerScore==POINTS_TO_WIN)
+        {
+            displayGameWinner();
+
+            //disable buttons
+            choiceButtons.forEach((choiceButton) => {
+                choiceButton.removeEventListener("click", handleChoice);
+                choiceButton.disabled=true;
+            });
+        }
     }
     
 
@@ -94,34 +107,37 @@ function playGame()
         {
             roundResultParagraph.textContent="You win! "+humanChoiceLower+" beats "+computerChoice;
             humanScore+=1;
-            updateScoreTextContent();
         }
         else
         {
             roundResultParagraph.textContent="You lose! "+computerChoice+" beats "+humanChoiceLower;
             computerScore+=1;
-            updateScoreTextContent();
         }
 
         resultsDiv.appendChild(roundResultParagraph);
+        updateScoreTextContent();
 
     }
 
 
     function displayGameWinner()
     {
+        let gameResultsParagraph=document.createElement("p");
+
         if (humanScore==computerScore)
         {
-            console.log("The game was a tie! You each won "+humanScore+" rounds");
+            gameResultsParagraph.textContent="The game was a tie! You each won "+humanScore+" rounds";
         }
         else if (humanScore>computerScore)
         {
-            console.log("You win! You won "+humanScore+" rounds and computer won "+computerScore+" rounds.");
+            gameResultsParagraph.textContent="You win! You won "+humanScore+" rounds and computer won "+computerScore+" rounds.";
         }
         else
         {
-            console.log("You lose! You won "+humanScore+" rounds and computer won "+computerScore+" rounds.");
+            gameResultsParagraph.textContent="You lose! You won "+humanScore+" rounds and computer won "+computerScore+" rounds.";
         }
+
+        resultsDiv.appendChild(gameResultsParagraph);
     }
     
 
