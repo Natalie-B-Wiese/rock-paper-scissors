@@ -45,6 +45,8 @@ function playGame()
     let humanScore=0;
     let computerScore=0;
 
+    const resultsDiv=document.querySelector("#results");
+
     //make all 3 choice buttons (rock, paper, and scissors) call handleChoice function when clicked on
     const choiceButtons = document.querySelectorAll(".choiceBtn");
     choiceButtons.forEach((choiceButton) => {
@@ -67,23 +69,28 @@ function playGame()
         const computerChoice=getComputerChoice();
 
         const humanChoiceLower=humanChoice.toLowerCase();
+
+        let roundResultParagraph=document.createElement("p");
+
         if (humanChoiceLower===computerChoice)
         {
-            console.log("It was a tie! You each chose "+computerChoice);
+            roundResultParagraph.textContent = "It was a tie! You each chose "+computerChoice;
         }
         //if human won
         else if ((humanChoiceLower==="rock" && computerChoice==="scissors") ||
         (humanChoiceLower==="paper" && computerChoice==="rock") ||
         (humanChoiceLower==="scissors" && computerChoice==="paper"))
         {
-            console.log("You win! "+humanChoiceLower+" beats "+computerChoice);
+            roundResultParagraph.textContent="You win! "+humanChoiceLower+" beats "+computerChoice;
             humanScore+=1;
         }
         else
         {
-            console.log("You lose! "+computerChoice+" beats "+humanChoiceLower);
+            roundResultParagraph.textContent="You lose! "+computerChoice+" beats "+humanChoiceLower;
             computerScore+=1;
         }
+
+        resultsDiv.appendChild(roundResultParagraph);
 
     }
 
