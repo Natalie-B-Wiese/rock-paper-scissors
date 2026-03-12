@@ -24,21 +24,6 @@ function getComputerChoice()
     }
 }
 
-/*
-Asks user to choose between rock, paper, and scissors. Then returns the user's input
-*/
-function getHumanChoice()
-{
-    let userChoice = prompt("rock, paper, or scissors: ");
-
-    return userChoice;
-}
-
-
-
-
-
-
 
 function playGame()
 {
