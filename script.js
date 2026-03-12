@@ -45,6 +45,18 @@ function playGame()
     let humanScore=0;
     let computerScore=0;
 
+    updateScoreTextContent();
+    
+    //makes the text display the values of human score and computer score variables
+    function updateScoreTextContent()
+    {
+        const humanScoreText=document.querySelector("#humanScore");
+        const computerScoreText=document.querySelector("#computerScore");
+        humanScoreText.textContent=humanScore;
+        computerScoreText.textContent=computerScore;
+    }
+    
+
     const resultsDiv=document.querySelector("#results");
 
     //make all 3 choice buttons (rock, paper, and scissors) call handleChoice function when clicked on
@@ -67,7 +79,6 @@ function playGame()
     function playRound(humanChoice)
     {
         const computerChoice=getComputerChoice();
-
         const humanChoiceLower=humanChoice.toLowerCase();
 
         let roundResultParagraph=document.createElement("p");
@@ -83,11 +94,13 @@ function playGame()
         {
             roundResultParagraph.textContent="You win! "+humanChoiceLower+" beats "+computerChoice;
             humanScore+=1;
+            updateScoreTextContent();
         }
         else
         {
             roundResultParagraph.textContent="You lose! "+computerChoice+" beats "+humanChoiceLower;
             computerScore+=1;
+            updateScoreTextContent();
         }
 
         resultsDiv.appendChild(roundResultParagraph);
